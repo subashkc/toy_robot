@@ -13,7 +13,7 @@ class Robot
 	end
 
 	def process_commands(command)
-		return false unless command.downcase.include?('place') || check_if_robot_on_table
+		return "ROBOT MUST BE PLACED BEFORE IT CAN ACCPET ANY OTHER COMMANDS" unless command.downcase.include?('place') || check_if_robot_on_table
 		return place(command) if command.downcase.include?('place')
 		self.send(command)
 	end
@@ -34,38 +34,38 @@ class Robot
 	end
 
 	def move
-		return "INVALID COMMANDS, YOU CAN NOT DESTROY THE ROBOT" if check_if_robot_falls
+		err_msg = "INVALID COMMANDS, YOU CAN NOT MAKE THE ROBOT FALL OFF THE TABLE"
+		movable_command = true
 		case @direction.downcase
-
 			when "east"
-				@x += 1
+				@x + 1 > 5 ? movable_command = false : @x += 1
 			when "west"
-				@x -= 1
+				@x - 1 <= 0 ? movable_command = false : @x -= 1
 			when "south"
-				@y -= 1
+				@y - 1 <= 0 ? movable_command = false : @y -= 1
 			when "north"
-				@y += 1
+				@y + 1 > 5 ? movable_command = false : @y += 1
 			else
 				puts "This can't be happening"
-
 		end
+		return err_msg unless movable_command
 	end
 
 	def right
 		direction_index = CommandsParser::DIRECTIONS.index(@direction) + 1
-		direction_index > 3 ? 0 : direction_index
+		direction_index = direction_index > 3 ? 0 : direction_index
 		@direction = CommandsParser::DIRECTIONS[direction_index]
 	end
 
 	def left
 		direction_index = CommandsParser::DIRECTIONS.index(@direction) - 1
-		direction_index < 0 ? 3 : direction_index
+		direction_index = direction_index < 0 ? 3 : direction_index
 		@direction = CommandsParser::DIRECTIONS[direction_index]
 	end
 
-	def check_if_robot_falls
-		@x + 1 > Table.length || @x -1 < 0 || @y + 1 > Table.width || @y - 1 < 0
-	end
+	# def check_if_robot_falls
+	# 	@x + 1 > Table.length || @x -1 < 0 || @y + 1 > Table.width || @y - 1 < 0
+	# end
 
 	def check_if_robot_on_table
 		return @x > 0

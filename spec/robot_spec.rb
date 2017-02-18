@@ -58,9 +58,5 @@ describe Robot do
 
 	end
 
-	context "Process Commands" do
-
-
-	end
 
 end

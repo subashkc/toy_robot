@@ -8,7 +8,7 @@ class Main
 
 		inst = <<-instructions 
 				\n\n\n
-				ENTER COMMANDS TO MOVE THE ROBOT WITHIN THE TABLE\n\n
+				ENTER COMMANDS TO MOVE THE ROBOT WITHIN THE TABLE (5x5)\n\n
 				VALID COMMANDS LISTED BELOW\n\n
 				PLACE X,Y,DIRECTION\n
 				MOVE -> MOVES THE ROBOT 1 UNIT IN THE DIRECTION IT IS FACING\n
@@ -18,9 +18,11 @@ class Main
 				TYPE EXIT TO STOP
 			instructions
 
-		puts inst
+		puts inst;puts
 
 		robot = Robot.new
+
+		puts;puts
 
 		loop do
 			user_input = gets.chomp
@@ -31,9 +33,11 @@ class Main
 
 			break if user_input.downcase == "exit"
 
-			puts "!!!! INVALID COMMAND, TYPE `help` TO SEE A LIST OF VALID COMMANDS !!!!"  unless CommandsParser.valid_command?(user_input)
-
-			robot.process_commands(user_input)
+			unless  CommandsParser.valid_command?(user_input)
+				puts "!!!! INVALID COMMAND, TYPE `help` TO SEE A LIST OF VALID COMMANDS !!!!"
+			else
+				puts robot.process_commands(user_input)
+			end
 
 		end
 	end
