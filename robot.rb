@@ -64,7 +64,7 @@ class Robot
 	end
 
 	def check_if_robot_on_table
-		return @x > 0
+		@x > 0
 	end
 
 	def check_if_place_command_has_valid_coordinates(new_x_coordinate, new_y_coordinate)
