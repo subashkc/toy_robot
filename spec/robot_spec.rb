@@ -19,7 +19,6 @@ describe Robot do
 	context "Commands" do
 
 		it "should have a place Command" do
-			# expect(@robot.respond_to?('place')).to be true
 			@robot.process_commands("place 1,2,east")
 			expect(@robot.x).to be 1
 			expect(@robot.y).to be 2

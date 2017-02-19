@@ -1,7 +1,5 @@
 class CommandsParser
 
-	# attr_accessor :type
-
 	COMMANDS = ["move", "place", "left", "right", "report"].freeze
 	DIRECTIONS = ["north", "east", "south", "west"].freeze
 

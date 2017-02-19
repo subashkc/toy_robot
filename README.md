@@ -1,7 +1,7 @@
 # toy_robot
 A ruby console app to play with a toy robot.
 
-Valid Commands to the Robot
+##Valid Commands to the Robot
 
 PLACE  X,Y,F
 MOVE  
@@ -25,7 +25,9 @@ without  changing  the  position  of  the  robot.
 `REPORT`  will  announce  the  X,Y  and  F  of  the  robot.  This  can  be  in  any  form,  but  
 standard  output  is  sufficient. 
 
-Environment
+type `ruby main.rb` from root directory of project to start the Robot
+
+## Environment
 
 OS -> Ubuntu 16.04 LTS x86_64
 

@@ -63,10 +63,6 @@ class Robot
 		@direction = CommandsParser::DIRECTIONS[direction_index]
 	end
 
-	# def check_if_robot_falls
-	# 	@x + 1 > Table.length || @x -1 < 0 || @y + 1 > Table.width || @y - 1 < 0
-	# end
-
 	def check_if_robot_on_table
 		return @x > 0
 	end

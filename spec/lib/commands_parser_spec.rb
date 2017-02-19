@@ -1,4 +1,4 @@
-require_relative '../lib/commands_parser'
+require_relative '../../lib/commands_parser'
 
 describe CommandsParser do
 
@@ -7,7 +7,7 @@ describe CommandsParser do
 		context "list of directions" do
 			
 			it "has a list of predefined directions" do
-				expect(CommandsParser::DIRECTIONS).to match_array(["North", "East", "South", "West"])
+				expect(CommandsParser::DIRECTIONS).to match_array(["north", "east", "south", "west"])
 			end
 
 			it "does not match an invalid direction" do
@@ -28,7 +28,7 @@ describe CommandsParser do
 
 		context "list of commands" do
 			it "has a list of predefined commands" do
-				expect(CommandsParser::COMMANDS).to match_array(["Move", "Left", "Right", "Report", "Place"])
+				expect(CommandsParser::COMMANDS).to match_array(["move", "left", "right", "report", "place"])
 			end		
 		end
 
@@ -43,11 +43,11 @@ describe CommandsParser do
 
 		context "commands validator" do
 			it "validates valid commands" do
-				expect(CommandsParser.valid_command?("Move")).to be true
-				expect(CommandsParser.valid_command?("Left")).to be true
-				expect(CommandsParser.valid_command?("Right")).to be true
-				expect(CommandsParser.valid_command?("Report")).to be true
-				expect(CommandsParser.valid_command?("Place 1,2,East")).to be true
+				expect(CommandsParser.valid_command?("move")).to be true
+				expect(CommandsParser.valid_command?("left")).to be true
+				expect(CommandsParser.valid_command?("right")).to be true
+				expect(CommandsParser.valid_command?("report")).to be true
+				expect(CommandsParser.valid_command?("place 1,2,East")).to be true
 			end
 
 			it "invalidated invalid command" do
