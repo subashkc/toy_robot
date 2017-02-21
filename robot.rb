@@ -1,3 +1,5 @@
+require_relative 'lib/commands'
+require_relative 'lib/directions'
 require_relative 'lib/commands_parser'
 require_relative 'table'
 
@@ -52,15 +54,17 @@ class Robot
 	end
 
 	def right
-		direction_index = CommandsParser::DIRECTIONS.index(@direction) + 1
-		direction_index = direction_index > 3 ? 0 : direction_index
-		@direction = CommandsParser::DIRECTIONS[direction_index]
+		@direction = Directions.get_new_direction(@direction, 'right')
+		# direction_index = Directions.get_direction_index(@direction) + 1
+		# direction_index = direction_index > 3 ? 0 : direction_index
+		# @direction = Directions.get_direction(direction_index)
 	end
 
 	def left
-		direction_index = CommandsParser::DIRECTIONS.index(@direction) - 1
-		direction_index = direction_index < 0 ? 3 : direction_index
-		@direction = CommandsParser::DIRECTIONS[direction_index]
+		@direction = Directions.get_new_direction(@direction, 'left')
+		# direction_index = Directions.get_direction_index(@direction) - 1
+		# direction_index = direction_index < 0 ? 3 : direction_index
+		# @direction = Directions.get_direction(direction_index)
 	end
 
 	def check_if_robot_on_table

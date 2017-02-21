@@ -1,13 +1,10 @@
 class CommandsParser
 
-	COMMANDS = ["move", "place", "left", "right", "report"].freeze
-	DIRECTIONS = ["north", "east", "south", "west"].freeze
-
 	class << self
 
 		def valid_command?(user_command)
 			return validate_place_command(user_command) if user_command.split(" ")[0] === "place"
-			COMMANDS.any? { |valid_command| valid_command === user_command }
+			Commands.get_commands.any? { |valid_command| valid_command === user_command }
 		end
 
 		private
@@ -17,6 +14,7 @@ class CommandsParser
 			command_match === 0
 		end
 
+	
 	end
 	
 end
