@@ -9,8 +9,8 @@ describe Robot do
 	context "Robot initialize" do
 
 		it "should have X, Y coordinates and a direction" do
-			expect(@robot.x).to be 0
-			expect(@robot.y).to be 0
+			expect(@robot.x).to be_nil
+			expect(@robot.y).to be_nil
 			expect(@robot.direction).to be_nil
 		end
 
@@ -49,10 +49,10 @@ describe Robot do
 		end
 
 		it "should not accept a invalid move command" do
-			@robot.process_commands("place 5,5,east")
+			@robot.process_commands("place 4,4,east")
 			@robot.process_commands("move")
-			expect(@robot.x).to be 5
-			expect(@robot.y).to be 5
+			expect(@robot.x).to be 4
+			expect(@robot.y).to be 4
 		end
 
 	end

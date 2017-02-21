@@ -9,8 +9,8 @@ class Robot
 
 	def initialize
 		puts "######### INITIALIZING ROBOT ############"
-		@x = 0
-		@y = 0
+		@x = nil
+		@y = nil
 		@direction = nil
 	end
 
@@ -40,13 +40,13 @@ class Robot
 		movable_command = true
 		case @direction
 			when "east"
-				@x + 1 > 5 ? movable_command = false : @x += 1
+				@x + 1 > 4 ? movable_command = false : @x += 1
 			when "west"
-				@x - 1 <= 0 ? movable_command = false : @x -= 1
+				@x - 1 < 0 ? movable_command = false : @x -= 1
 			when "south"
-				@y - 1 <= 0 ? movable_command = false : @y -= 1
+				@y - 1 < 0 ? movable_command = false : @y -= 1
 			when "north"
-				@y + 1 > 5 ? movable_command = false : @y += 1
+				@y + 1 > 4 ? movable_command = false : @y += 1
 			else
 				puts "This can't be happening"
 		end
@@ -55,24 +55,18 @@ class Robot
 
 	def right
 		@direction = Directions.get_new_direction(@direction, 'right')
-		# direction_index = Directions.get_direction_index(@direction) + 1
-		# direction_index = direction_index > 3 ? 0 : direction_index
-		# @direction = Directions.get_direction(direction_index)
 	end
 
 	def left
 		@direction = Directions.get_new_direction(@direction, 'left')
-		# direction_index = Directions.get_direction_index(@direction) - 1
-		# direction_index = direction_index < 0 ? 3 : direction_index
-		# @direction = Directions.get_direction(direction_index)
 	end
 
 	def check_if_robot_on_table
-		@x > 0
+		@x.between?(0, Table.length())
 	end
 
 	def check_if_place_command_has_valid_coordinates(new_x_coordinate, new_y_coordinate)
-		new_x_coordinate.between?(0, Table.length) && new_y_coordinate.between?(0, Table.width)
+		new_x_coordinate.between?(0, Table.length()) && new_y_coordinate.between?(0, Table.width())
 	end
 
 end
