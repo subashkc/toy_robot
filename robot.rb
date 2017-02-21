@@ -68,11 +68,11 @@ class Robot
 	end
 	
 	def check_if_robot_on_table
-		@x && @x.between?(Table.origin_x, Table.length) && @y && @y.between?(Table.origin_y, Table.width)
+		Table.is_within?(@x, @y)
 	end
 
 	def check_if_place_command_has_valid_coordinates(new_x_coordinate, new_y_coordinate)
-		new_x_coordinate.between?(Table.origin_x, Table.length) && new_y_coordinate.between?(Table.origin_y, Table.width)
+		Table.is_within?(new_x_coordinate, new_y_coordinate)
 	end
 
 end
