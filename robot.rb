@@ -15,9 +15,14 @@ class Robot
 	end
 
 	def process_commands(command)
+		return false unless CommandsParser.valid_command?(command)
 		return "ROBOT MUST BE PLACED BEFORE IT CAN ACCPET ANY OTHER COMMANDS" unless command.include?('place') || check_if_robot_on_table
-		return place(command) if command.include?('place')
+		return place(command) if command.include?('place')		
 		self.send(command)
+	end
+
+	def get_new_direction(rotating_direction)
+		Directions.get_new_direction(@direction, rotating_direction)
 	end
 
 	private
@@ -29,6 +34,7 @@ class Robot
 		@x = new_x
 		@y = new_y
 		@direction = robot_placement_details[2]
+		true
 	end
 
 	def report
@@ -40,33 +46,33 @@ class Robot
 		movable_command = true
 		case @direction
 			when "east"
-				@x + 1 > 4 ? movable_command = false : @x += 1
+				@x + 1 >= Table.length ? movable_command = false : @x += 1
 			when "west"
-				@x - 1 < 0 ? movable_command = false : @x -= 1
+				@x - 1 < Table.origin_x ? movable_command = false : @x -= 1
 			when "south"
-				@y - 1 < 0 ? movable_command = false : @y -= 1
+				@y - 1 < Table.origin_y ? movable_command = false : @y -= 1
 			when "north"
-				@y + 1 > 4 ? movable_command = false : @y += 1
+				@y + 1 > Table.width ? movable_command = false : @y += 1
 			else
 				puts "This can't be happening"
 		end
 		return err_msg unless movable_command
+		true
 	end
 
-	def right
-		@direction = Directions.get_new_direction(@direction, 'right')
+	["left", "right"].each do |direction|
+		define_method direction do
+			@direction = Directions.get_new_direction(@direction, direction.to_s)
+			true
+		end
 	end
-
-	def left
-		@direction = Directions.get_new_direction(@direction, 'left')
-	end
-
+	
 	def check_if_robot_on_table
-		@x.between?(0, Table.length())
+		@x && @x.between?(Table.origin_x, Table.length) && @y && @y.between?(Table.origin_y, Table.width)
 	end
 
 	def check_if_place_command_has_valid_coordinates(new_x_coordinate, new_y_coordinate)
-		new_x_coordinate.between?(0, Table.length()) && new_y_coordinate.between?(0, Table.width())
+		new_x_coordinate.between?(Table.origin_x, Table.length) && new_y_coordinate.between?(Table.origin_y, Table.width)
 	end
 
 end

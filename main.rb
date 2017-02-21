@@ -32,12 +32,10 @@ class Main
 			end
 
 			break if user_input == "exit"
-
-			unless  CommandsParser.valid_command?(user_input)
-				puts "!!!! INVALID COMMAND, TYPE `help` TO SEE A LIST OF VALID COMMANDS !!!!"
-			else
-				puts robot.process_commands(user_input)
-			end
+			
+			resp = robot.process_commands(user_input)
+			puts "!!!! INVALID COMMAND, TYPE `help` TO SEE A LIST OF VALID COMMANDS !!!!" unless resp
+			puts resp if resp.class == String
 
 		end
 	end

@@ -1,7 +1,7 @@
-# toy_robot
+# Toy Robot
 A ruby console app to play with a toy robot.
 
-##Valid Commands to the Robot
+###Valid Commands to the Robot
 
 PLACE  X,Y,F
 MOVE  
