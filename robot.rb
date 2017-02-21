@@ -13,8 +13,8 @@ class Robot
 	end
 
 	def process_commands(command)
-		return "ROBOT MUST BE PLACED BEFORE IT CAN ACCPET ANY OTHER COMMANDS" unless command.downcase.include?('place') || check_if_robot_on_table
-		return place(command) if command.downcase.include?('place')
+		return "ROBOT MUST BE PLACED BEFORE IT CAN ACCPET ANY OTHER COMMANDS" unless command.include?('place') || check_if_robot_on_table
+		return place(command) if command.include?('place')
 		self.send(command)
 	end
 
@@ -36,7 +36,7 @@ class Robot
 	def move
 		err_msg = "INVALID COMMANDS, YOU CAN NOT MAKE THE ROBOT FALL OFF THE TABLE"
 		movable_command = true
-		case @direction.downcase
+		case @direction
 			when "east"
 				@x + 1 > 5 ? movable_command = false : @x += 1
 			when "west"

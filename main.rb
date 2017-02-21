@@ -25,13 +25,13 @@ class Main
 		puts;puts
 
 		loop do
-			user_input = gets.chomp
+			user_input = gets.chomp.downcase
 
 			if user_input == 'help'
 				puts;puts;puts inst;puts;puts
 			end
 
-			break if user_input.downcase == "exit"
+			break if user_input == "exit"
 
 			unless  CommandsParser.valid_command?(user_input)
 				puts "!!!! INVALID COMMAND, TYPE `help` TO SEE A LIST OF VALID COMMANDS !!!!"

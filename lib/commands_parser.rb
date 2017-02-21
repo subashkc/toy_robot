@@ -6,8 +6,8 @@ class CommandsParser
 	class << self
 
 		def valid_command?(user_command)
-			return validate_place_command(user_command) if user_command.split(" ")[0].downcase === "place"
-			COMMANDS.any? { |valid_command| valid_command.downcase === user_command.downcase }
+			return validate_place_command(user_command) if user_command.split(" ")[0] === "place"
+			COMMANDS.any? { |valid_command| valid_command === user_command }
 		end
 
 		private
