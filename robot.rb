@@ -68,7 +68,7 @@ class Robot
 	end
 
 	def check_if_place_command_has_valid_coordinates(new_x_coordinate, new_y_coordinate)
-		(new_x_coordinate > 0 && new_x_coordinate <= Table.length) && (new_y_coordinate > 0 && new_y_coordinate <= Table.width)
+		new_x_coordinate.between?(0, Table.length) && new_y_coordinate.between?(0, Table.width)
 	end
 
 end
