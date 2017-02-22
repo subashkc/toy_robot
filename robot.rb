@@ -31,6 +31,7 @@ class Robot
 		robot_placement_details = place_command.split(" ")[1].split(',')
 		new_x, new_y = robot_placement_details[0].to_i, robot_placement_details[1].to_i
 		return "INVALID COMMANDS, YOU MUST PLACE ROBOT WITHIN THE TABLE" unless check_if_place_command_has_valid_coordinates(new_x, new_y)
+		return "INVALID DIRECTION, TYPE `help` TO SEE A LIST OF VALID DIRECTIONS" unless Directions.get_directions.include?(robot_placement_details[2])
 		@x = new_x
 		@y = new_y
 		@direction = robot_placement_details[2]

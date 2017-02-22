@@ -15,11 +15,9 @@ describe CommandsParser do
 			expect(CommandsParser.valid_command?("Rotate")).to be false
 			expect(CommandsParser.valid_command?("Forward")).to be false
 			expect(CommandsParser.valid_command?("place")).to be false
-			expect(CommandsParser.valid_command?("place 1,2,southeast")).to be false
 		end
 
 		it "invalidates incomplete commands" do
-			expect(CommandsParser.valid_command?("place -1,2,east")).to be false
 			expect(CommandsParser.valid_command?("mov")).to be false
 			expect(CommandsParser.valid_command?("repor")).to be false
 		end
