@@ -2,7 +2,7 @@ require_relative 'lib/commands'
 require_relative 'lib/directions'
 require_relative 'lib/commands_parser'
 require_relative 'table'
-
+require 'pry'
 class Robot
 
 	attr_accessor :x, :y, :direction
@@ -15,6 +15,7 @@ class Robot
 	end
 
 	def process_commands(command)
+		# binding.pry
 		return false unless CommandsParser.valid_command?(command)
 		return "ROBOT MUST BE PLACED BEFORE IT CAN ACCPET ANY OTHER COMMANDS" unless command.include?('place') || check_if_robot_on_table
 		return place(command) if command.include?('place')		
@@ -46,16 +47,16 @@ class Robot
 		err_msg = "INVALID COMMANDS, YOU CAN NOT MAKE THE ROBOT FALL OFF THE TABLE"
 		movable_command = true
 		case @direction
-			when "east"
-				@x + 1 >= Table.length ? movable_command = false : @x += 1
-			when "west"
-				@x - 1 < Table.origin_x ? movable_command = false : @x -= 1
-			when "south"
-				@y - 1 < Table.origin_y ? movable_command = false : @y -= 1
-			when "north"
-				@y + 1 > Table.width ? movable_command = false : @y += 1
-			else
-				puts "This can't be happening"
+		when "east"
+			@x + 1 >= Table.length ? movable_command = false : @x += 1
+		when "west"
+			@x - 1 < Table.origin_x ? movable_command = false : @x -= 1
+		when "south"
+			@y - 1 < Table.origin_y ? movable_command = false : @y -= 1
+		when "north"
+			@y + 1 >= Table.width ? movable_command = false : @y += 1
+		else
+			puts "This can't be happening"
 		end
 		return err_msg unless movable_command
 		true
