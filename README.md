@@ -1,5 +1,6 @@
 # Toy Robot
 [![Build Status](https://travis-ci.org/subashkc/toy_robot.svg?branch=master)](https://travis-ci.org/subashkc/toy_robot)
+
 A ruby console app to play with a toy robot.
 
 ###Valid Commands to the Robot

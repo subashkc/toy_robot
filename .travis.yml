@@ -6,3 +6,8 @@ script: bundle exec rspec
 notifications:
   email:
     - subashkc08@gmail.com
+addons:
+  code_climate:
+    repo_token: JDtftkibC3pyuJj2DfNs
+after_success:
+  - bundle exec codeclimate-test-reporter
