@@ -21,11 +21,11 @@ class Robot
 		self.send(command)
 	end
 
+	private
+
 	def get_new_direction rotating_direction
 		Directions.get_new_direction(@direction, rotating_direction)
 	end
-
-	private
 
 	def place place_command
 		robot_placement_details = place_command.split(" ")[1].split(',')
@@ -57,7 +57,6 @@ class Robot
 		when "north"
 			@y_coordinate += 1
 		else
-			puts "This can't be happening"
 		end
 		true
 	end
@@ -73,7 +72,6 @@ class Robot
 		when "north"
 			return false if @y_coordinate + 1 >= Table.width
 		else
-			puts "This can't be happening"
 		end
 		true
 	end

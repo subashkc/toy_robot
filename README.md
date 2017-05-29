@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/subashkc/toy_robot.svg?branch=master)](https://travis-ci.org/subashkc/toy_robot)
 [![Code Climate](https://codeclimate.com/github/subashkc/toy_robot/badges/gpa.svg)](https://codeclimate.com/github/subashkc/toy_robot)
 [![Test Coverage](https://codeclimate.com/github/subashkc/toy_robot/badges/coverage.svg)](https://codeclimate.com/github/subashkc/toy_robot/coverage)
+
 A ruby console app to play with a toy robot.
 
 ###Valid Commands to the Robot

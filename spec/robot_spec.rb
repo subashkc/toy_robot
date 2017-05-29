@@ -48,7 +48,7 @@ describe Robot do
 		end
 
 		it "should not accept report command before place command" do
-			resp = @robot.process_commands('left')
+			resp = @robot.process_commands('report')
 			expect(resp).to eql('ROBOT MUST BE PLACED BEFORE IT CAN ACCPET ANY OTHER COMMANDS')
 		end
 
@@ -75,11 +75,32 @@ describe Robot do
 			expect(@robot.direction).to eql("east")
 		end
 
-		it "should not accept a invalid move command" do
+		it "should not accept a invalid move command in north direction" do
+			@robot.process_commands("place 4,4,north")
+			@robot.process_commands("move")
+			expect(@robot.x_coordinate).to be 4
+			expect(@robot.y_coordinate).to be 4
+		end
+
+		it "should not accept a invalid move command in east direction" do
 			@robot.process_commands("place 4,4,east")
 			@robot.process_commands("move")
 			expect(@robot.x_coordinate).to be 4
 			expect(@robot.y_coordinate).to be 4
+		end
+
+		it "should not accept a invalid move command in south direction" do
+			@robot.process_commands("place 0,0,south")
+			@robot.process_commands("move")
+			expect(@robot.x_coordinate).to be 0
+			expect(@robot.y_coordinate).to be 0
+		end
+
+		it "should not accept a invalid move command in west direction" do
+			@robot.process_commands("place 0,0,west")
+			@robot.process_commands("move")
+			expect(@robot.x_coordinate).to be 0
+			expect(@robot.y_coordinate).to be 0
 		end
 
 		it "should accpet a series of valid commands and ignore invalid commands" do
@@ -88,14 +109,22 @@ describe Robot do
 			@robot.process_commands("haha")
 			@robot.process_commands("left")
 			@robot.process_commands("move")
+			@robot.process_commands("left")
+			@robot.process_commands("move")
+			@robot.process_commands("left")
+			@robot.process_commands("move")		
 			resp = @robot.process_commands('report')
-			expect(resp).to eql('1, 1, north')
-			expect(@robot.x_coordinate).to be 1
-			expect(@robot.y_coordinate).to be 1
-			expect(@robot.direction).to eql('north')
+			expect(resp).to eql('0, 0, south')
+			expect(@robot.x_coordinate).to be 0
+			expect(@robot.y_coordinate).to be 0
+			expect(@robot.direction).to eql('south')
+		end
+
+		it "should not accept a invalid place command" do
+			expect(@robot.process_commands('place -1,0,east')).to be false
+			expect(@robot.process_commands('place 6,6,east')).to eql('INVALID COMMANDS, YOU MUST PLACE ROBOT WITHIN THE TABLE')
 		end
 
 	end
-
 
 end
