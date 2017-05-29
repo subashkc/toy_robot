@@ -8,6 +8,6 @@ notifications:
     - subashkc08@gmail.com
 addons:
   code_climate:
-    repo_token: JDtftkibC3pyuJj2DfNs
+    repo_token: fc536c5abf183ec0939ed2a8dac70d4c1476ce0a5666505cfef9000cbc43ce82
 after_success:
   - bundle exec codeclimate-test-reporter
