@@ -2,4 +2,7 @@ language: ruby
 rvm:
   - 2.2
 install: bundle install
-script: bundle exec rspec  
+script: bundle exec rspec
+notifications:
+  email:
+    - subashkc08@gmail.com
