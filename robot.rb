@@ -5,17 +5,16 @@ require_relative 'table'
 require 'pry'
 class Robot
 
-	attr_accessor :x, :y, :direction
+	attr_accessor :x_coordinate, :y_coordinate, :direction
 
 	def initialize
 		puts "######### INITIALIZING ROBOT ############"
-		@x = nil
-		@y = nil
+		@x_coordinate = nil
+		@y_coordinate = nil
 		@direction = nil
 	end
 
 	def process_commands(command)
-		# binding.pry
 		return false unless CommandsParser.valid_command?(command)
 		return "ROBOT MUST BE PLACED BEFORE IT CAN ACCPET ANY OTHER COMMANDS" unless command.include?('place') || check_if_robot_on_table
 		return place(command) if command.include?('place')		
@@ -30,17 +29,17 @@ class Robot
 
 	def place(place_command)
 		robot_placement_details = place_command.split(" ")[1].split(',')
-		new_x, new_y = robot_placement_details[0].to_i, robot_placement_details[1].to_i
-		return "INVALID COMMANDS, YOU MUST PLACE ROBOT WITHIN THE TABLE" unless check_if_place_command_has_valid_coordinates(new_x, new_y)
+		new_x_coordinate, new_y_coordinate = robot_placement_details[0].to_i, robot_placement_details[1].to_i
+		return "INVALID COMMANDS, YOU MUST PLACE ROBOT WITHIN THE TABLE" unless check_if_place_command_has_valid_coordinates(new_x_coordinate, new_y_coordinate)
 		return "INVALID DIRECTION, TYPE `help` TO SEE A LIST OF VALID DIRECTIONS" unless Directions.get_directions.include?(robot_placement_details[2])
-		@x = new_x
-		@y = new_y
+		@x_coordinate = new_x_coordinate
+		@y_coordinate = new_y_coordinate
 		@direction = robot_placement_details[2]
 		true
 	end
 
 	def report
-		"#{@x}, #{@y}, #{@direction}"
+		"#{@x_coordinate}, #{@y_coordinate}, #{@direction}"
 	end
 
 	def move
@@ -48,13 +47,13 @@ class Robot
 		movable_command = true
 		case @direction
 		when "east"
-			@x + 1 >= Table.length ? movable_command = false : @x += 1
+			@x_coordinate + 1 >= Table.length ? movable_command = false : @x_coordinate += 1
 		when "west"
-			@x - 1 < Table.origin_x ? movable_command = false : @x -= 1
+			@x_coordinate - 1 < Table.origin_x ? movable_command = false : @x_coordinate -= 1
 		when "south"
-			@y - 1 < Table.origin_y ? movable_command = false : @y -= 1
+			@y_coordinate - 1 < Table.origin_y ? movable_command = false : @y_coordinate -= 1
 		when "north"
-			@y + 1 >= Table.width ? movable_command = false : @y += 1
+			@y_coordinate + 1 >= Table.width ? movable_command = false : @y_coordinate += 1
 		else
 			puts "This can't be happening"
 		end
@@ -70,7 +69,7 @@ class Robot
 	end
 	
 	def check_if_robot_on_table
-		Table.is_within?(@x, @y)
+		Table.is_within?(@x_coordinate, @y_coordinate)
 	end
 
 	def check_if_place_command_has_valid_coordinates(new_x_coordinate, new_y_coordinate)
