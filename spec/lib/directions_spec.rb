@@ -26,20 +26,6 @@ describe Directions do
 
 		context "direction and index" do
 
-			it "gives a direction based on the index" do
-				expect(Directions.get_direction(0)).to eql('north')
-				expect(Directions.get_direction(1)).to eql('east')
-				expect(Directions.get_direction(2)).to eql('south')
-				expect(Directions.get_direction(3)).to eql('west')
-			end
-
-			it "gives index of the given direction" do
-				expect(Directions.get_direction_index('north')).to be 0
-				expect(Directions.get_direction_index('east')).to be 1
-				expect(Directions.get_direction_index('south')).to be 2
-				expect(Directions.get_direction_index('west')).to be 3
-			end
-
 			it "gives a new direction on basis of given turning direction" do
 				expect(Directions.get_new_direction('north','right')).to eql('east')
 				expect(Directions.get_new_direction('north','left')).to eql('west')
