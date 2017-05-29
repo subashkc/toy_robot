@@ -31,4 +31,4 @@ type `ruby main.rb` from root directory of project to start the Robot
 
 OS -> Ubuntu 16.04 LTS x86_64
 
-Ruby Version -> ruby 2.3.3p222 (2016-11-21 revision 56859) [x86_64-linux]
+Ruby Version -> ruby 2.2.0p0 (2014-12-25 revision 49005) [x86_64-linux]
