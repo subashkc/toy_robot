@@ -1,4 +1,5 @@
 # Toy Robot
+https://travis-ci.org/subashkc/toy_robot.svg?branch=master
 A ruby console app to play with a toy robot.
 
 ###Valid Commands to the Robot
